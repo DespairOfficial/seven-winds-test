@@ -1,0 +1,39 @@
+@import '../../base.scss';
+.main {
+	height: 7%;
+	background-color: $primary-color;
+	display: flex;
+	align-items: center;
+
+	.options {
+		color: $font-color;
+		width: 20px;
+		height: 20px;
+	}
+	.share {
+		color: $font-color;
+		height: 20px;
+		width: 20px;
+	}
+	.menu {
+		display: flex;
+		color: $font-color;
+		height: 100%;
+		align-items: center;
+
+		& > * + * {
+			margin-left: 3rem;
+		}
+		.selected {
+			display: flex;
+			height: 100%;
+			align-items: center;
+			color: white;
+			border-bottom: solid white 2px;
+		}
+	}
+	& > *  {
+		margin-left: 2rem;
+	}
+	
+}

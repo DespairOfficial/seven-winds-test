@@ -1,0 +1,22 @@
+@import '../../../base.scss';
+.main {
+	background-color: $primary-color;
+	width: 100%;
+	border-top: $border-style;
+}
+.title {
+	background-color: $secondary-color;
+	height: 3.5rem;
+	border-bottom: $border-style;
+
+	& div {
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding-inline: 1rem;
+		width: fit-content;
+		font-size: 1.3rem;
+		border-right: $border-style;
+	}
+}

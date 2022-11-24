@@ -1,0 +1,18 @@
+@import '../../../../base.scss';
+.main{
+	padding: 0.5rem;
+	overflow-x: auto;
+	height: 100%;
+	.nameRow{
+		display: flex;
+		border-bottom: $border-style;
+		color: $font-color;
+		padding: 0.5rem;
+		& > *{
+			flex-basis: 12%;
+		}
+		.longRow{
+			flex-basis: 50%;
+		}
+	}
+}
