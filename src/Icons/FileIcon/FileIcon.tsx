@@ -1,6 +1,6 @@
-export const FileIcon = () => {
+export const FileIcon = ({color}: {color: string}) => {
 	return (
-		<svg viewBox="0 0 512 512" fill="#7890b2" height="1.5rem">
+		<svg viewBox="0 0 512 512" fill={color} height="1.5rem">
 			<g>
 				<g>
 					<path

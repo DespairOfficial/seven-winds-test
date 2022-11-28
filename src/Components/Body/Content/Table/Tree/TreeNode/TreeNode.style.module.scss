@@ -21,22 +21,6 @@
 					background-color: #414144;
 				}
 
-				.option {
-					cursor: pointer;
-					position: relative;
-					&:hover {
-						opacity: 0.8;
-					}
-				}
-
-				.level {
-					position: absolute;
-					color: $primary-color;
-					font-weight: 700;
-					left: 0.6rem;
-					bottom: 0.5rem;
-					font-size: 0.8rem;
-				}
 			}
 		}
 	}
@@ -62,26 +46,6 @@
 			
 		}
 	}
-	.longRow {
-		flex-basis: 50%;
-	}
+	
 }
 
-// &::before{
-// 	content: '';
-// 	position: absolute;
-// 	height: 1px;
-// 	left: 1rem;
-// 	top: 4.9rem;
-// 	width: 1.5rem;
-// 	background: white;
-// }
-// &::after{
-// 	content: '';
-// 	position: absolute;
-// 	height: 3rem;
-// 	left: 1rem;
-// 	top: 1.9rem;
-// 	width: 1px;
-// 	background: white;
-// }

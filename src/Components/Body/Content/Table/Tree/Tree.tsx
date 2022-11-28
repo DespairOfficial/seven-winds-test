@@ -1,25 +1,6 @@
-import { useEffect, useState } from 'react';
-import styles from './Tree.style.module.scss';
-import { Row } from '../../../../../interfaces/Row';
 import TreeNode from './TreeNode/TreeNode';
+import { TreeProps } from './Tree.types';
 
-interface TreeProps {
-	treeData: Row[];
-	depth: number;
-	parentId: number | null;
-	editingRowId: number;
-	setEditingRowId: React.Dispatch<React.SetStateAction<number>>;
-	onDelete: (id: number) => void;
-	onUpdate: (
-		id: number,
-		rowName: string,
-		salary: number,
-		equipmentCosts: number,
-		supportCosts: number,
-		estimatedProfit: number
-	) => void;
-	onAdd: (parentId: number | null) => void;
-}
 const Tree = ({
 	treeData,
 	depth,
@@ -29,6 +10,7 @@ const Tree = ({
 	onDelete,
 	onUpdate,
 	onAdd,
+	onCreate
 }: TreeProps) => {
 	return (
 		<div>
@@ -44,6 +26,7 @@ const Tree = ({
 						onDelete={onDelete}
 						onUpdate={onUpdate}
 						onAdd={onAdd}
+						onCreate={onCreate}
 					/>
 				);
 			})}

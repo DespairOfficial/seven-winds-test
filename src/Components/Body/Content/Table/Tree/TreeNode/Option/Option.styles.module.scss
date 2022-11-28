@@ -1,0 +1,17 @@
+@import '../../../../../../../base.scss';
+
+.option {
+	cursor: pointer;
+	position: relative;
+	&:hover {
+		opacity: 0.8;
+	}
+}
+.level {
+	position: absolute;
+	color: $primary-color;
+	font-weight: 700;
+	left: 0.6rem;
+	bottom: 0.5rem;
+	font-size: 0.8rem;
+}

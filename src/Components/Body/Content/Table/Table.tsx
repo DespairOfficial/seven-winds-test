@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { deleteRow, getList } from '../../../../http/rowApi';
+import { getList } from '../../../../http/rowApi';
 import { Row } from '../../../../interfaces/Row';
 import styles from './Table.style.module.scss';
 import Tree from './Tree/Tree';
@@ -14,8 +14,10 @@ const Table = () => {
 		})();
 	}, []);
 
-	function deleteRow(id: number) {
-		TableService.deleteRow(rows, setRows, id);
+	function deleteRow(id: number | null) {
+		if (id) {
+			TableService.deleteRow(rows, setRows, id);
+		}
 	}
 	const updateRow = (
 		id: number,
@@ -84,6 +86,7 @@ const Table = () => {
 					onAdd={addRow}
 					editingRowId={editingRowId}
 					setEditingRowId={setEditingRowId}
+					onCreate={createRow}
 				/>
 			</div>
 		</div>

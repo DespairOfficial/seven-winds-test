@@ -1,26 +1,11 @@
-import { Row } from '../../../../../../interfaces/Row';
 import styles from './TreeNode.style.module.scss';
 import Tree from '../Tree';
 import { FileIcon, Trash, Folder } from '../../../../../../Icons';
 import { useState } from 'react';
+import { TreeNodeProps } from './TreeNode.types';
+import Option from './Option';
+import Input from './Input';
 
-interface TreeNodeProps {
-	node: Row;
-	depth: number;
-	parentId: number | null;
-	editingRowId: number;
-	setEditingRowId: React.Dispatch<React.SetStateAction<number>>;
-	onDelete: (id: number) => void;
-	onUpdate: (
-		id: number,
-		rowName: string,
-		salary: number,
-		equipmentCosts: number,
-		supportCosts: number,
-		estimatedProfit: number
-	) => void;
-	onAdd: (parentId: number | null) => void;
-}
 const TreeNode = (props: TreeNodeProps) => {
 	let {
 		node,
@@ -31,6 +16,7 @@ const TreeNode = (props: TreeNodeProps) => {
 		onDelete,
 		onUpdate,
 		onAdd,
+		onCreate,
 	} = props;
 
 	const [rowName, setRowName] = useState<string>(node.rowName);
@@ -47,16 +33,25 @@ const TreeNode = (props: TreeNodeProps) => {
 
 	const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		if(node.id===0){
+		if (node.id === 0) {
+			onCreate(
+				parentId,
+				rowName,
+				salary,
+				equipmentCosts,
+				supportCosts,
+				estimatedProfit
+			);
+		} else {
+			onUpdate(
+				node.id,
+				rowName,
+				salary,
+				equipmentCosts,
+				supportCosts,
+				estimatedProfit
+			);
 		}
-		onUpdate(
-			node.id,
-			rowName,
-			salary,
-			equipmentCosts,
-			supportCosts,
-			estimatedProfit
-		);
 		setEditingRowId(-1);
 	};
 
@@ -85,71 +80,59 @@ const TreeNode = (props: TreeNodeProps) => {
 							}}
 						>
 							{depth == 1 && (
-								<div
-									className={styles.option}
-									onClick={() => {
-										onAdd(parentId);
-									}}
-								>
-									<Folder color={'#5f98f5'} />
-									<div className={styles.level}>1</div>
-								</div>
+								<Option
+									onClickMethod={onAdd}
+									Icon={Folder}
+									onClickId={parentId}
+									color={'#5f98f5'}
+									level={1}
+								/>
 							)}
 
 							{depth == 2 && (
-								<div
-									className={styles.option}
-									onClick={() => {
-										onAdd(parentId);
-									}}
-								>
-									<Folder color={'#95ffac'} />
-									<div className={styles.level}>2</div>
-								</div>
+								<Option
+									onClickMethod={onAdd}
+									Icon={Folder}
+									onClickId={parentId}
+									color={'#95ffac'}
+									level={2}
+								/>
 							)}
 
 							{depth < 2 && isHovered && (
-								<div
-									className={styles.option}
-									onClick={() => {
-										onAdd(node.id);
-									}}
-								>
-									<Folder color={'#95ffac'} />
-									<div className={styles.level}>2</div>
-								</div>
+								<Option
+									onClickMethod={onAdd}
+									Icon={Folder}
+									onClickId={node.id}
+									color={'#95ffac'}
+									level={2}
+								/>
 							)}
 							{depth == 3 && (
-								<div
-									className={styles.option}
-									onClick={() => {
-										onAdd(parentId);
-									}}
-								>
-									<FileIcon />
-								</div>
+								<Option
+									onClickMethod={onAdd}
+									Icon={FileIcon}
+									onClickId={parentId}
+									color={'#7890b2'}
+								/>
 							)}
 
 							{depth < 3 && isHovered && (
-								<div
-									className={styles.option}
-									onClick={() => {
-										onAdd(node.id);
-									}}
-								>
-									<FileIcon />
-								</div>
+								<Option
+									onClickMethod={onAdd}
+									Icon={FileIcon}
+									onClickId={node.id}
+									color={'#7890b2'}
+								/>
 							)}
 
 							{isHovered && (
-								<div
-									className={styles.option}
-									onClick={() => {
-										onDelete(node.id);
-									}}
-								>
-									<Trash />
-								</div>
+								<Option
+									onClickMethod={onDelete}
+									Icon={Trash}
+									onClickId={node.id}
+									color={'#df4444'}
+								/>
 							)}
 						</div>
 					</div>
@@ -167,44 +150,41 @@ const TreeNode = (props: TreeNodeProps) => {
 						(editingRowId === node.id && styles.editable)
 					}
 				>
-					<input
-						className={styles.longRow}
-						value={rowName}
-						disabled={editingRowId !== node.id}
-						onChange={(e) => {
-							setRowName(e.target.value);
-						}}
-					></input>
-					<input
-						value={salary}
-						disabled={editingRowId !== node.id}
-						onChange={(e) => {
-							setSalary(parseInt(e.target.value));
-						}}
-					></input>
-					<input
-						value={equipmentCosts}
-						disabled={editingRowId !== node.id}
-						onChange={(e) => {
-							setEquipmentCosts(parseInt(e.target.value));
-						}}
-					></input>
-
-					<input
-						value={supportCosts}
-						disabled={editingRowId !== node.id}
-						onChange={(e) => {
-							setSupportCosts(parseInt(e.target.value));
-						}}
-					></input>
-
-					<input
-						value={estimatedProfit}
-						disabled={editingRowId !== node.id}
-						onChange={(e) => {
-							setEstimatedProfit(parseInt(e.target.value));
-						}}
-					></input>
+					<Input
+						type="text"
+						state={rowName}
+						setState={setRowName}
+						editingRowId={editingRowId}
+						nodeId={node.id}
+					/>
+					<Input
+						type="number"
+						state={salary}
+						setState={setSalary}
+						editingRowId={editingRowId}
+						nodeId={node.id}
+					/>
+					<Input
+						type="number"
+						state={equipmentCosts}
+						setState={setEquipmentCosts}
+						editingRowId={editingRowId}
+						nodeId={node.id}
+					/>
+					<Input
+						type="number"
+						state={supportCosts}
+						setState={setSupportCosts}
+						editingRowId={editingRowId}
+						nodeId={node.id}
+					/>
+					<Input
+						type="number"
+						state={estimatedProfit}
+						setState={setEstimatedProfit}
+						editingRowId={editingRowId}
+						nodeId={node.id}
+					/>
 				</form>
 			</div>
 			<Tree
@@ -216,6 +196,7 @@ const TreeNode = (props: TreeNodeProps) => {
 				onDelete={onDelete}
 				onUpdate={onUpdate}
 				onAdd={onAdd}
+				onCreate={onCreate}
 			/>
 		</>
 	);

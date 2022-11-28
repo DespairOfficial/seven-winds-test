@@ -1,7 +1,7 @@
 import { UpdateRowResultDto } from '../../../../interfaces/UpdateRowResult.dto';
 import { createRow, deleteRow, updateRow } from '../../../../http/rowApi';
 import { Row } from '../../../../interfaces/Row';
-import {  UpdateRowParams } from './Table.types';
+import { UpdateRowParams } from './Table.types';
 
 export const TableService = {
 	async deleteRow(
@@ -23,8 +23,7 @@ export const TableService = {
 		setState(copyOfState);
 	},
 
-	async updateRow( params: UpdateRowParams
-	): Promise<void> {
+	async updateRow(params: UpdateRowParams): Promise<void> {
 		const data: UpdateRowResultDto = await updateRow(params.id, {
 			...params,
 			machineOperatorSalary: 0,
@@ -35,7 +34,7 @@ export const TableService = {
 		});
 		const { copyOfState, parentOfUpdated } = mutateCopyAndGetParent(
 			data,
-			params.state,
+			params.state
 		);
 
 		let currentElement = parentOfUpdated?.child
@@ -120,28 +119,28 @@ export const TableService = {
 			salary,
 			equipmentCosts,
 			supportCosts,
-			estimatedProfit
+			estimatedProfit,
 		});
-		let { copyOfState, parentOfUpdated } = mutateCopyAndGetParent(data, state)
+		let { copyOfState, parentOfUpdated } = mutateCopyAndGetParent(
+			data,
+			state
+		); // in this case parent of updated is parent of parent of new element
 		let currentElement = parentOfUpdated?.child
 			? parentOfUpdated.child
 			: copyOfState;
 		for (let i = 0; i < currentElement.length; i++) {
-			if (currentElement[i].id === data.current.id) {
+			if (currentElement[i].id === 0) {
 				currentElement[i] = {
 					...currentElement[i],
 					...data.current,
 				};
 			}
 		}
-		setState(copyOfState)
+		setState(copyOfState);
 	},
 };
 
-function mutateCopyAndGetParent(
-	data: UpdateRowResultDto,
-	state: Row[],
-) {
+function mutateCopyAndGetParent(data: UpdateRowResultDto, state: Row[]) {
 	let copyOfState: Row[] = [...state];
 
 	let parentOfUpdated: Row = {} as Row;
@@ -153,7 +152,7 @@ function mutateCopyAndGetParent(
 		for (let j = 0; j < rows.length; j++) {
 			if (rows[j].id === data.changed[indexOfChangedItem].id) {
 				rows[j] = {
-					...rows[j],
+					...rows[j],					
 					...data.changed[indexOfChangedItem],
 				};
 				parentOfUpdated = { ...rows[j] };

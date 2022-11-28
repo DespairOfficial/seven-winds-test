@@ -10,7 +10,7 @@ export async function getList() {
 	});
 }
 export async function createRow(createRowDto: CreateRowDto) {
-	return await $host.post('/row/list').then((response): UpdateRowResultDto => {
+	return await $host.post('/row/create', {...createRowDto}).then((response): UpdateRowResultDto => {
 		return response.data;
 	});
 }
