@@ -1,5 +1,6 @@
 import TreeNode from './TreeNode/TreeNode';
 import { TreeProps } from './Tree.types';
+import '../Lines.scss'
 
 const Tree = ({
 	treeData,
@@ -10,10 +11,11 @@ const Tree = ({
 	onDelete,
 	onUpdate,
 	onAdd,
-	onCreate
+	onCreate,
+	isFetching
 }: TreeProps) => {
 	return (
-		<div>
+		<div className='tree'>
 			{treeData.map((node) => {
 				return (
 					<TreeNode
@@ -27,6 +29,7 @@ const Tree = ({
 						onUpdate={onUpdate}
 						onAdd={onAdd}
 						onCreate={onCreate}
+						isFetching={isFetching}
 					/>
 				);
 			})}

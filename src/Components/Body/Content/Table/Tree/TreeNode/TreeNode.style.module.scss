@@ -1,4 +1,6 @@
 @import '../../../../../../base.scss';
+$spacing: 20px;
+
 .main {
 	width: 100%;
 	border-bottom: $border-style;
@@ -17,35 +19,13 @@
 				border-radius: 0.5rem;
 				padding: 0.2rem;
 				position: relative;
-				&:hover {
-					background-color: #414144;
+				background-color: $primary-color;	
+				&:hover{
+					background-color:  #414144;
 				}
-
 			}
-		}
-	}
-	.form {
-		width: 100%;
-		position: relative;
-		display: flex;
-		& > * {
-			all: unset;
-			display: flex;
-			align-items: center;
-			flex-basis: 12%;
-		}
-	}
-	.editable {
-		& > * {
-			border: solid 1px $editing-color;
-			color: $editing-color;
-			padding: 0.5rem;
-			font-size: 0.9rem;
-			border-radius: 0.5rem;
-			margin-right: 2rem;
+			
 			
 		}
 	}
-	
 }
-

@@ -1,0 +1,53 @@
+// ul = .tree
+// li = .treewrapper
+/* Base
+--------------------------- */
+
+.tree {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* Base for lists & headers
+  --------------------------- */
+.tree {
+	overflow: hidden;
+}
+
+.tree {
+	margin-left: 2px;
+}
+
+/* Stripes
+  --------------------------- */
+.lined {
+	position: relative;
+}
+.lined:before {
+	content: '';
+	display: block;
+	position: absolute;
+	left: -1.2rem;
+	bottom: 1.2rem;
+	width: 1.5rem;
+	height: 0;
+	border-bottom: 1px solid white;
+	height: 1000px;
+	border: 1px solid white;
+	border-width: 0 0 1px 1px;
+	z-index: 0;
+}
+
+.lined_1::before {	
+	border: none;
+}
+
+/* If Ul Has Headers Inside
+  --------------------------- */
+// .p-has-headers > LI {
+// 	margin: 10px 0;
+// }
+// .p-has-headers > LI:before {
+// 	content: none;
+// }

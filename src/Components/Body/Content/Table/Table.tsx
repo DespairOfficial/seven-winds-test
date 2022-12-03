@@ -7,16 +7,21 @@ import { TableService } from './Table.service';
 const Table = () => {
 	const [rows, setRows] = useState<Row[]>([]);
 	const [editingRowId, setEditingRowId] = useState<number>(-1);
+	const [isFetching, setIsFetching] = useState<boolean>(false);
 	useEffect(() => {
+		setIsFetching(true);
 		(async () => {
 			const data = await getList();
 			setRows(data);
+			setIsFetching(false);
 		})();
 	}, []);
 
 	function deleteRow(id: number | null) {
 		if (id) {
+			setIsFetching(true);
 			TableService.deleteRow(rows, setRows, id);
+			setIsFetching(false);
 		}
 	}
 	const updateRow = (
@@ -27,6 +32,7 @@ const Table = () => {
 		supportCosts: number,
 		estimatedProfit: number
 	) => {
+		setIsFetching(true);
 		TableService.updateRow({
 			state: rows,
 			setState: setRows,
@@ -37,15 +43,12 @@ const Table = () => {
 			supportCosts,
 			estimatedProfit,
 		});
+		setIsFetching(false);
 	};
 	function addRow(parentId: number | null) {
-		TableService.addRow(
-			rows,
-			setRows,
-			parentId,
-			editingRowId,
-			setEditingRowId
-		);
+		setIsFetching(true);
+		TableService.addRow(rows, setRows, parentId, setEditingRowId);
+		setIsFetching(false);
 	}
 	function createRow(
 		parentId: number | null,
@@ -55,6 +58,7 @@ const Table = () => {
 		supportCosts: number,
 		estimatedProfit: number
 	) {
+		setIsFetching(true);
 		TableService.createRow(
 			rows,
 			setRows,
@@ -65,6 +69,7 @@ const Table = () => {
 			supportCosts,
 			estimatedProfit
 		);
+		setIsFetching(false);
 	}
 	return (
 		<div className={styles.main}>
@@ -76,7 +81,7 @@ const Table = () => {
 				<div>Накладные расходы</div>
 				<div>Сметная прибыль</div>
 			</div>
-			<div>
+			<div className="treeWrapper">
 				<Tree
 					treeData={rows}
 					depth={0}
@@ -87,6 +92,7 @@ const Table = () => {
 					editingRowId={editingRowId}
 					setEditingRowId={setEditingRowId}
 					onCreate={createRow}
+					isFetching={isFetching}
 				/>
 			</div>
 		</div>

@@ -12,7 +12,8 @@ const Option = ({
 		<div
 			className={styles.option}
 			onClick={() => {
-				onClickMethod(onClickId);
+				if (onClickMethod) onClickMethod(onClickId);
+				console.log(onClickId)
 			}}
 		>
 			<Icon color={color} />

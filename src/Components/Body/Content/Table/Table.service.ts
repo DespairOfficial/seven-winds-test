@@ -15,9 +15,13 @@ export const TableService = {
 			data,
 			state
 		);
-		parentOfUpdated.child?.map((item, indexOfDeletedItem) => {
+		const toMap =
+			Object.keys(parentOfUpdated).length !== 0
+				? parentOfUpdated?.child
+				: copyOfState;
+		toMap.map((item, indexOfDeletedItem) => {
 			if (item.id === id) {
-				parentOfUpdated.child.splice(indexOfDeletedItem, 1);
+				toMap.splice(indexOfDeletedItem, 1);
 			}
 		});
 		setState(copyOfState);
@@ -57,7 +61,6 @@ export const TableService = {
 		state: Row[],
 		setState: React.Dispatch<React.SetStateAction<Row[]>>,
 		parentId: number | null,
-		editingRowId: number,
 		setEditingRowId: React.Dispatch<React.SetStateAction<number>>
 	): Promise<void> {
 		const newRow = {
@@ -76,9 +79,7 @@ export const TableService = {
 			id: 0,
 			total: 0,
 		};
-		if (parentId === null) {
-			return;
-		}
+
 		let rowsCopy = [...state];
 		let parentOfAdded: Row = {} as Row; // finding parent of added element in copy
 
@@ -93,8 +94,14 @@ export const TableService = {
 				}
 			}
 		};
-		findInRows(rowsCopy);
-		parentOfAdded.child.push(newRow);
+
+		if (parentId === null) {
+			rowsCopy.push(newRow);
+		} else {
+			findInRows(rowsCopy);
+			parentOfAdded.child.push(newRow);
+		}
+
 		setState(rowsCopy);
 		setEditingRowId(0);
 	},
@@ -152,7 +159,7 @@ function mutateCopyAndGetParent(data: UpdateRowResultDto, state: Row[]) {
 		for (let j = 0; j < rows.length; j++) {
 			if (rows[j].id === data.changed[indexOfChangedItem].id) {
 				rows[j] = {
-					...rows[j],					
+					...rows[j],
 					...data.changed[indexOfChangedItem],
 				};
 				parentOfUpdated = { ...rows[j] };

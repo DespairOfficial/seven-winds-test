@@ -6,6 +6,7 @@ export interface TreeProps {
 	parentId: number | null;
 	editingRowId: number;
 	setEditingRowId: React.Dispatch<React.SetStateAction<number>>;
+	isFetching: boolean;
 	onDelete: (id: number | null) => void;
 	onUpdate: (
 		id: number,

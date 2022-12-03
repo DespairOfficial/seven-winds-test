@@ -23,7 +23,7 @@ const Input = <T extends StateType>({
 	};
 	return (
 		<input
-			className={typeof state === 'string' && styles.longRow}
+			className={typeof state === 'string' ? styles.longRow : null}
 			required
 			disabled={editingRowId !== nodeId}
 			type={type}

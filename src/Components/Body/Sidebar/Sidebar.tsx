@@ -14,15 +14,21 @@ const Sidebar = () => {
 				</div>
 			</div>
 			<div className={styles.field}>
-					<FieldItem title="По проекту"/>
-					<FieldItem title="Объекты"/>
-					<FieldItem title="РД"/>
-					<FieldItem title="МТО"/>
-					<FieldItem title="СМР"/>
-					<FieldItem title="График"/>
-					
-
-
+				<FieldItem title="По проекту" />
+				<FieldItem title="Объекты" />
+				<FieldItem title="РД" />
+				<FieldItem title="МТО" />
+				<FieldItem title="СМР" />
+				<FieldItem title="График" />
+				<FieldItem title="МиМ" />
+				<FieldItem title="Рабочие" />
+				<FieldItem title="Капвложения" />
+				<FieldItem title="Бюджет" />
+				<FieldItem title="Финансирование" />
+				<FieldItem title="Панорамы" />
+				<FieldItem title="Камеры" />
+				<FieldItem title="Поручения" />
+				<FieldItem title="Контрагенты" />
 			</div>
 		</div>
 	);

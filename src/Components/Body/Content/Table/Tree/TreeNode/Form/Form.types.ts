@@ -1,13 +1,9 @@
-import { Row } from '../../../../../../interfaces/Row';
-
-export interface TreeNodeProps {
+import { Row } from './../../../../../../../interfaces/Row';
+export interface FormProps {
 	node: Row;
-	depth: number;
 	parentId: number | null;
 	editingRowId: number;
 	setEditingRowId: React.Dispatch<React.SetStateAction<number>>;
-	isFetching: boolean;
-	onDelete: (id: number | null) => void;
 	onUpdate: (
 		id: number,
 		rowName: string,
@@ -24,5 +20,4 @@ export interface TreeNodeProps {
 		supportCosts: number,
 		estimatedProfit: number
 	) => void;
-	onAdd: (parentId: number | null) => void;
 }
