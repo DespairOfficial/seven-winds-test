@@ -3,6 +3,8 @@
 	background-color: $primary-color;
 	width: 100%;
 	border-top: $border-style;
+	overflow-y: auto;
+	padding-bottom: 4rem;
 }
 .title {
 	background-color: $secondary-color;

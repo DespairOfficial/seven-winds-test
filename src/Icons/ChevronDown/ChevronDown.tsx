@@ -1,15 +1,22 @@
 export const ChevronDown = () => {
 	return (
 		<svg
-			fill="none"
-			strokeWidth={2}
-			stroke="currentColor"
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="currentColor"
+			xmlns="http://www.w3.org/2000/svg"
 		>
-			<path
-				strokeLinecap="round"
-				strokeLinejoin="round"
-				d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-			/>
+			<g clipPath="url(#clip0_27_60)">
+				<path
+					d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z"
+				/>
+			</g>
+			<defs>
+				<clipPath id="clip0_27_60">
+					<rect width="24" height="24" fill="white" />
+				</clipPath>
+			</defs>
 		</svg>
 	);
 };

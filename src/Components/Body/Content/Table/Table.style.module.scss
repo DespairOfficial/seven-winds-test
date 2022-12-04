@@ -1,18 +1,24 @@
 @import '../../../../base.scss';
 .main{
 	padding: 0.5rem;
-	overflow-x: auto;
-	height: 100%;
 	.nameRow{
-		display: flex;
+		display:flex;
 		border-bottom: $border-style;
 		color: $font-color;
-		padding: 0.5rem;
-		& > *{
-			flex-basis: 12%;
+		padding-block: 0.5rem;
+		padding-inline: 1rem;
+		& > * {
+			width: $defaultSectionWidth;
+		}
+		.shortRow{
+			width: $shortSectionWidth;
 		}
 		.longRow{
-			flex-basis: 50%;
+			width: $longSectionWidth;
 		}
 	}
+	.treeWrapper{
+		// overflow-y: scroll;
+	}
+
 }

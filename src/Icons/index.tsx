@@ -12,4 +12,6 @@ export * from './MenuItem/MenuItem';
 export * from './FileIcon/FileIcon'
 export * from './Trash/Trash'
 export * from './Folder/Folder'
+export * from './Folder2/Folder2'
+
 

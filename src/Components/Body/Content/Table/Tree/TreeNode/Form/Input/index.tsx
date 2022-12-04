@@ -18,12 +18,13 @@ const Input = <T extends StateType>({
 	const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value;
 		setState(() => {
-			return value as T;
+			const result = value as T;
+			return result;
 		});
 	};
 	return (
 		<input
-			className={typeof state === 'string' ? styles.longRow : null}
+			className={type === 'text' ? styles.longRow : null}
 			required
 			disabled={editingRowId !== nodeId}
 			type={type}

@@ -74,14 +74,14 @@ const Table = () => {
 	return (
 		<div className={styles.main}>
 			<div className={styles.nameRow}>
-				<div>Уровень</div>
+				<div className={styles.shortRow}>Уровень</div>
 				<div className={styles.longRow}>Наименование работ</div>
 				<div>Основная з/п</div>
 				<div>Оборудование</div>
 				<div>Накладные расходы</div>
 				<div>Сметная прибыль</div>
 			</div>
-			<div className="treeWrapper">
+			<div className={styles.treeWrapper}>
 				<Tree
 					treeData={rows}
 					depth={0}

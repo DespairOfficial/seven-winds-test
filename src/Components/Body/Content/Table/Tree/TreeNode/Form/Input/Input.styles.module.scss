@@ -1,3 +1,4 @@
+@import '../../../../../../../../base.scss';
 .longRow {
-	flex-basis: 50%;
+	width: $longSectionWidth;
 }

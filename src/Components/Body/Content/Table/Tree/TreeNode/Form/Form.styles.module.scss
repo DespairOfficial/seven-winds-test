@@ -2,22 +2,21 @@
 
 .form {
 	width: 100%;
-	position: relative;
 	display: flex;
 	& > * {
 		all: unset;
-		display: flex;
-		align-items: center;
-		flex-basis: 12%;
+		width: $defaultSectionWidth;
 	}
 }
 .editable {
 	& > * {
 		border: solid 1px $editing-color;
 		color: $editing-color;
+		width: $defaultSectionWidth;
 		padding: 0.5rem;
-		font-size: 0.9rem;
 		border-radius: 0.5rem;
-		margin-right: 2rem;
+	}
+	& > * + *{
+		margin-left: 2rem;
 	}
 }

@@ -18,7 +18,7 @@ const Sidebar = () => {
 				<FieldItem title="Объекты" />
 				<FieldItem title="РД" />
 				<FieldItem title="МТО" />
-				<FieldItem title="СМР" />
+				<FieldItem title="СМР" isSelected={true}/>
 				<FieldItem title="График" />
 				<FieldItem title="МиМ" />
 				<FieldItem title="Рабочие" />

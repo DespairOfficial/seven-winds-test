@@ -2,7 +2,7 @@
 
 .main{
 	background-color: $secondary-color;
-	width: 17%;
+	width: 15vw;
 	height: 100%;
 	border-top: $border-style;
 	border-right: $border-style;
@@ -26,10 +26,6 @@
 	}	
 	.field{
 		padding-top: 0.5rem;
-		padding-inline: 1.5rem;
-		& > *{
-			margin-bottom: 1rem;
-		}
 	}
 	
 	

@@ -4,28 +4,35 @@ $spacing: 20px;
 .main {
 	width: 100%;
 	border-bottom: $border-style;
+	padding-inline: 1rem;
+	height: 2rem;
 	color: white;
-	padding: 0.5rem;
+	padding-block: 0.7rem;
 	display: flex;
-
 	.optionsWrapper {
 		display: flex;
-		flex-basis: 12%;
+		width: $shortSectionWidth;
 		.options {
 			.icons {
 				display: flex;
 				align-items: center;
+				justify-content: center;
 				flex-basis: auto;
 				border-radius: 0.5rem;
-				padding: 0.2rem;
+				padding: 0.3rem;
 				position: relative;
-				background-color: $primary-color;	
-				&:hover{
-					background-color:  #414144;
+
+				& > * + * {
+					padding-left: 0.5rem;
+				}
+				&:hover {
+					background-color: #414144;
 				}
 			}
-			
-			
 		}
+	}
+	.form{
+		display: flex;
+		align-items: center;
 	}
 }

@@ -19,7 +19,8 @@ const Tree = ({
 			{treeData.map((node) => {
 				return (
 					<TreeNode
-						key={Math.floor(Math.random() * 1000)}
+						// key={Math.floor(Math.random() * 1000)}
+						key={node.id}
 						node={node}
 						depth={depth}
 						editingRowId={editingRowId}

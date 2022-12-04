@@ -23,6 +23,9 @@ const TreeNode = (props: TreeNodeProps) => {
 
 	depth += 1;
 	const { child } = node;
+
+	const hasChildStyle = node.child.length === 0 ? null : 'has_child';
+
 	return (
 		<>
 			<div
@@ -37,12 +40,17 @@ const TreeNode = (props: TreeNodeProps) => {
 						style={{
 							paddingLeft: `${(depth - 1) * 2}rem`,
 							pointerEvents:
-								editingRowId === node.id && !isFetching ? 'none' : 'auto',
+								editingRowId === node.id && !isFetching
+									? 'none'
+									: 'auto',
 						}}
 					>
 						<div
 							className={
-								styles.icons + ' lined ' + `lined_${depth}`
+								styles.icons +
+								' lined ' +
+								`lined_${depth} ` +
+								hasChildStyle
 							}
 							onMouseEnter={() => {
 								setIsHovered(true);
@@ -55,22 +63,23 @@ const TreeNode = (props: TreeNodeProps) => {
 								isHovered={isHovered}
 								node={node}
 								parentId={parentId}
-								depth={depth}
 								onAdd={onAdd}
 								onDelete={onDelete}
+								depth={depth}
 							/>
 						</div>
 					</div>
 				</div>
-
-				<Form
-					node={node}
-					setEditingRowId={setEditingRowId}
-					onUpdate={onUpdate}
-					onCreate={onCreate}
-					editingRowId={editingRowId}
-					parentId={parentId}
-				/>
+				<div className={styles.form}>
+					<Form
+						node={node}
+						setEditingRowId={setEditingRowId}
+						onUpdate={onUpdate}
+						onCreate={onCreate}
+						editingRowId={editingRowId}
+						parentId={parentId}
+					/>
+				</div>
 			</div>
 			<Tree
 				treeData={child}

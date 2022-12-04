@@ -2,7 +2,14 @@ import { FormProps } from './Form.types';
 import styles from './Form.styles.module.scss';
 import { useState } from 'react';
 import Input from './Input';
-const Form = ({ node, editingRowId, setEditingRowId, onUpdate, onCreate, parentId }: FormProps) => {
+const Form = ({
+	node,
+	editingRowId,
+	setEditingRowId,
+	onUpdate,
+	onCreate,
+	parentId,
+}: FormProps) => {
 	const [rowName, setRowName] = useState<string>(node.rowName);
 	const [salary, setSalary] = useState<number>(node.salary);
 	const [equipmentCosts, setEquipmentCosts] = useState<number>(
@@ -40,7 +47,16 @@ const Form = ({ node, editingRowId, setEditingRowId, onUpdate, onCreate, parentI
 		<form
 			onKeyPress={(e) => {
 				if (e.key === 'Enter') {
-					submitForm(e);
+					if (
+						rowName != '' &&
+						(salary != 0 ||
+							equipmentCosts != 0 ||
+							supportCosts != 0 ||
+							estimatedProfit != 0)
+					) {
+						console.log(salary, typeof salary);
+						submitForm(e);
+					}
 				}
 			}}
 			className={

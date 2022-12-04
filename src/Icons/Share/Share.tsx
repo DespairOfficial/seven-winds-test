@@ -1,22 +1,15 @@
 export const Share = () => {
 	return (
 		<svg
-
-			viewBox="0 0 512 512"
+			width="18"
+			height="15"
+			viewBox="0 0 18 15"
 			fill="currentColor"
-			strokeWidth={2}
-			stroke="currentColor"
-			transform="scale(-1,1)"
+			xmlns="http://www.w3.org/2000/svg"
 		>
-			<g>
-				<g>
-					<path
-						d="M512,253.001L295.204,36.204v144.388C132.168,180.592,0,312.76,0,475.796c59.893-109.171,178.724-165.462,295.204-151.033
-			v145.034L512,253.001z"
-					/>
-				</g>
-			</g>
-		
+			<path
+				d="M7 4V0L0 7L7 14V9.9C12 9.9 15.5 11.5 18 15C17 10 14 5 7 4Z"
+			/>
 		</svg>
 	);
 };
