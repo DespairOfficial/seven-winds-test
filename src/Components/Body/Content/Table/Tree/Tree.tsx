@@ -1,6 +1,7 @@
 import TreeNode from './TreeNode/TreeNode';
 import { TreeProps } from './Tree.types';
-import '../Lines.scss'
+import '../Lines.scss';
+import { v4 as uuidv4 } from 'uuid';
 
 const Tree = ({
 	treeData,
@@ -12,14 +13,14 @@ const Tree = ({
 	onUpdate,
 	onAdd,
 	onCreate,
-	isFetching
+	isFetching,
 }: TreeProps) => {
 	return (
-		<div className='tree'>
+		<div className="tree">
 			{treeData.map((node) => {
 				return (
 					<TreeNode
-						key={Math.floor(Math.random() * 1000)}
+						key={uuidv4()}
 						// key={node.id}
 						node={node}
 						depth={depth}
