@@ -40,7 +40,7 @@ export const TableService = {
 			data,
 			params.state
 		);
-
+		
 		let currentElement = parentOfUpdated?.child
 			? parentOfUpdated.child
 			: copyOfState;
